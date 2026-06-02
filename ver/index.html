@@ -237,12 +237,12 @@
 
         <div class="current-info">
             <div class="current-title" id="currentTitle">Inuyasha</div>
-            <div class="current-chapter" id="currentChapter">Sesión 1 - Capítulo 24 (Español Latino)</div>
+            <div class="current-chapter" id="currentChapter">Sesión 1 - Capítulo 25 (Español Latino)</div>
         </div>
 
         <div class="player-container">
             <div class="video-wrapper">
-                <iframe id="videoFrame" src="https://playmogo.com/e/4mx06mjc0b9d" 
+                <iframe id="videoFrame" src="https://playmogo.com/e/9sdbsh34ekxx" 
                         scrolling="no" 
                         frameborder="0" 
                         allowfullscreen="true"></iframe>
@@ -252,17 +252,14 @@
         <div class="chapters-section">
             <h3 class="chapters-title">📺 Lista de Capítulos</h3>
             <div class="chapters-list" id="chaptersList">
-                <button class="chapter-btn active" data-url="https://playmogo.com/e/4mx06mjc0b9d" onclick="changeChapter(this, 'Dragon Ball Super', 1)">
-                    <div class="chapter-number">1</div>
-                    <div class="chapter-label">Capítulo</div>
+                <button class="chapter-btn" data-url="https://playmogo.com/e/4mx06mjc0b9d" onclick="changeChapter(this, 'Inuyasha', 24)">
+                    <div class="chapter-number">24</div>
+                    <div class="chapter-label">Cap 24</div>
                 </button>
-                <!-- Agrega más capítulos aquí -->
-                <!--
-                <button class="chapter-btn" data-url="URL_DEL_VIDEO" onclick="changeChapter(this, 'Nombre del Anime', 2)">
-                    <div class="chapter-number">2</div>
-                    <div class="chapter-label">Capítulo</div>
+                <button class="chapter-btn active" data-url="https://playmogo.com/e/9sdbsh34ekxx" onclick="changeChapter(this, 'Inuyasha', 25)">
+                    <div class="chapter-number">25</div>
+                    <div class="chapter-label">Cap 25</div>
                 </button>
-                -->
             </div>
         </div>
 
@@ -294,7 +291,7 @@
             
             // Actualizar título y capítulo
             document.getElementById('currentTitle').textContent = title;
-            document.getElementById('currentChapter').textContent = 'Capítulo ' + chapter;
+            document.getElementById('currentChapter').textContent = 'Sesión 1 - Capítulo ' + chapter + ' (Español Latino)';
             
             // Marcar botón activo
             document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
