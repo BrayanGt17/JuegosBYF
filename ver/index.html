@@ -26,6 +26,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #e1bee7;
             padding: 20px;
+            padding-bottom: 40px;
         }
 
         .back-btn {
@@ -50,7 +51,7 @@
 
         .header {
             text-align: center;
-            margin: 30px 0;
+            margin: 30px 0 20px 0;
         }
 
         .title {
@@ -73,9 +74,31 @@
             font-size: 1.1em;
         }
 
+        .current-info {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px 25px;
+            background: linear-gradient(145deg, rgba(45, 45, 85, 0.9), rgba(25, 25, 55, 0.95));
+            border-radius: 20px;
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            display: inline-block;
+        }
+
+        .current-title {
+            font-size: 1.5em;
+            color: #ff9a9e;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .current-chapter {
+            font-size: 1.1em;
+            color: #d1c4e9;
+        }
+
         .player-container {
             max-width: 900px;
-            margin: 30px auto;
+            margin: 0 auto 30px auto;
             background: linear-gradient(145deg, rgba(45, 45, 85, 0.95), rgba(25, 25, 55, 0.98));
             border: 2px solid rgba(126, 87, 194, 0.4);
             border-radius: 25px;
@@ -101,15 +124,56 @@
             border: none;
         }
 
-        .video-info {
-            margin-top: 15px;
-            text-align: center;
-            color: #b39ddb;
+        .chapters-section {
+            max-width: 900px;
+            margin: 30px auto 0 auto;
         }
 
-        .video-info h3 {
+        .chapters-title {
+            text-align: center;
+            font-size: 1.3em;
             color: #d1c4e9;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .chapters-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .chapter-btn {
+            padding: 15px 10px;
+            background: linear-gradient(145deg, rgba(45, 45, 85, 0.9), rgba(25, 25, 55, 0.95));
+            border: 2px solid rgba(126, 87, 194, 0.4);
+            border-radius: 15px;
+            color: #d1c4e9;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .chapter-btn:hover {
+            transform: scale(1.05);
+            border-color: #ff9a9e;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .chapter-btn.active {
+            background: linear-gradient(145deg, rgba(255, 105, 180, 0.3), rgba(254, 207, 239, 0.2));
+            border-color: #ff9a9e;
+        }
+
+        .chapter-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff9a9e;
+        }
+
+        .chapter-label {
+            font-size: 0.8em;
+            color: #b39ddb;
+            margin-top: 3px;
         }
 
         .suggestion-btn {
@@ -171,16 +235,34 @@
             <p class="subtitle">Pasala bien viendo lo que quieras 💕</p>
         </div>
 
+        <div class="current-info">
+            <div class="current-title" id="currentTitle">Dragon Ball Super</div>
+            <div class="current-chapter" id="currentChapter">Capítulo 1</div>
+        </div>
+
         <div class="player-container">
             <div class="video-wrapper">
-                <iframe src="https://playmogo.com/e/4mx06mjc0b9d" 
+                <iframe id="videoFrame" src="https://playmogo.com/e/4mx06mjc0b9d" 
                         scrolling="no" 
                         frameborder="0" 
                         allowfullscreen="true"></iframe>
             </div>
-            <div class="video-info">
-                <h3>🎥 Reproductor</h3>
-                <p>Disfruta de tu contenido favorito</p>
+        </div>
+
+        <div class="chapters-section">
+            <h3 class="chapters-title">📺 Lista de Capítulos</h3>
+            <div class="chapters-list" id="chaptersList">
+                <button class="chapter-btn active" data-url="https://playmogo.com/e/4mx06mjc0b9d" onclick="changeChapter(this, 'Dragon Ball Super', 1)">
+                    <div class="chapter-number">1</div>
+                    <div class="chapter-label">Capítulo</div>
+                </button>
+                <!-- Agrega más capítulos aquí -->
+                <!--
+                <button class="chapter-btn" data-url="URL_DEL_VIDEO" onclick="changeChapter(this, 'Nombre del Anime', 2)">
+                    <div class="chapter-number">2</div>
+                    <div class="chapter-label">Capítulo</div>
+                </button>
+                -->
             </div>
         </div>
 
@@ -204,6 +286,21 @@
                 container.appendChild(particle);
             }
         }
+
+        function changeChapter(btn, title, chapter) {
+            // Cambiar iframe
+            const iframe = document.getElementById('videoFrame');
+            iframe.src = btn.dataset.url;
+            
+            // Actualizar título y capítulo
+            document.getElementById('currentTitle').textContent = title;
+            document.getElementById('currentChapter').textContent = 'Capítulo ' + chapter;
+            
+            // Marcar botón activo
+            document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
         createParticles();
     </script>
 </body>
