@@ -36,6 +36,77 @@
             box-sizing: border-box;
         }
 
+        /* ===== MANTENIMIENTO ===== */
+        .maintenance-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .maintenance-title {
+            font-size: 3em;
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        .maintenance-message {
+            font-size: 1.5em;
+            color: #d1c4e9;
+            margin-bottom: 40px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .maintenance-hearts {
+            font-size: 3em;
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8)); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .whatsapp-btn {
+            padding: 15px 40px;
+            background: #25D366;
+            color: white;
+            border-radius: 30px;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===== CONTENIDO PRINCIPAL (COMENTADO) ===== */
+        /* Descomenta el contenido para activar la pagina normal */
+
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
@@ -260,6 +331,24 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== MANTENIMIENTO ===== -->
+    <div class="maintenance-overlay">
+        <h1 class="maintenance-title">💔💔💔</h1>
+        <p class="maintenance-message">
+            Se acabó...<br>
+            Como lo que sentías por mí 💔
+        </p>
+        <div class="maintenance-hearts">💔🖤💔</div>
+        <a href="https://wa.me/50238985289?text=Hola%20Brayan%20💔" 
+           class="whatsapp-btn" target="_blank">
+            💬 Escríbeme
+        </a>
+    </div>
+
+    <!-- ===== CONTENIDO PRINCIPAL (COMENTADO) =====
+    Descomenta todo desde <canvas> hasta </body> para activar
+    
     <canvas id="particles-canvas"></canvas>
     
     <div class="corner-decoration corner-tl"></div>
@@ -434,5 +523,8 @@
         initParticles();
         animate();
     </script>
+
+    ===== FIN CONTENIDO COMENTADO ===== -->
+
 </body>
 </html>
