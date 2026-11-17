@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#160b28">
+  <title>Sopa de letras | BYFFOREVER</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --panel: rgba(25, 16, 40, 0.9);
+      --stroke: rgba(196, 152, 255, 0.25);
+      --text: #fff8ff;
+      --muted: #d7c4e7;
+      --pink: #ff79c6;
+      --purple: #8062df;
+      --gold: #f7d15c;
+      --green: #88e0b0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 22px 12px;
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 12% 0, rgba(255, 121, 198, .19), transparent 32rem),
+        radial-gradient(circle at 100% 80%, rgba(128, 98, 223, .2), transparent 30rem),
+        linear-gradient(140deg, #12071d, #24113c 58%, #180d2c);
+    }
+
+    button { font: inherit; }
+
+    .app {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .back-link {
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible { color: #fff; }
+
+    .level-badge {
+      padding: 9px 14px;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      font-weight: 800;
+    }
+
+    .intro { margin-bottom: 20px; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
+
+    .intro p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      align-items: start;
+      gap: 16px;
+    }
+
+    .board-panel,
+    .words-panel {
+      min-width: 0;
+      padding: clamp(14px, 3vw, 22px);
+      border: 1px solid var(--stroke);
+      border-radius: 22px;
+      background: var(--panel);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(8px);
+    }
+
+    .board-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .board-heading h2,
+    .words-panel h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .progress {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .grid-wrap {
+      width: min(100%, 620px);
+      margin: 0 auto;
+      padding: clamp(7px, 2vw, 12px);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 16px;
+      background: rgba(8, 5, 16, .55);
+      overflow-x: auto;
+      touch-action: pan-x pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--size), minmax(0, 1fr));
+      gap: clamp(2px, .7vw, 5px);
+    }
+
+    .letter {
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      aspect-ratio: 1;
+      padding: 0;
+      border: 1px solid rgba(210, 187, 255, .16);
+      border-radius: clamp(4px, 1vw, 8px);
+      background: rgba(255, 255, 255, .07);
+      color: #fff;
+      font-size: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    .letter:hover { background: rgba(255, 255, 255, .14); }
+    .letter.selected { background: rgba(247, 209, 92, .4); border-color: var(--gold); }
+    .letter.found { background: rgba(91, 190, 133, .32); border-color: rgba(136, 224, 176, .65); color: #e7fff0; }
+
+    .status {
+      min-height: 48px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .words-panel h2 { margin-bottom: 6px; }
+
+    .words-hint {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .word-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .word-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .045);
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .word-item.found {
+      border-color: rgba(136, 224, 176, .38);
+      color: var(--green);
+      text-decoration: line-through;
+      opacity: .8;
+    }
+
+    .word-check { color: var(--green); }
+
+    .actions {
+      display: grid;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .action-btn {
+      min-height: 44px;
+      padding: 9px 14px;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .action-btn:hover,
+    .action-btn:focus-visible { background: rgba(255, 255, 255, .13); }
+
+    .action-btn.primary {
+      border: 0;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      box-shadow: 0 10px 24px rgba(128, 98, 223, .24);
+    }
+
+    .action-btn[hidden] { display: none; }
+
+    @media (max-width: 760px) {
+      body { padding: 14px 10px; }
+      .game-layout { grid-template-columns: 1fr; }
+      .words-panel { order: 2; }
+      .word-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 380px) {
+      .topbar { align-items: flex-start; }
+      .back-link { max-width: 62%; }
+      .letter-grid { gap: 2px; }
+      .letter { border-radius: 3px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="back-link" href="../index.html">← Volver a BYFFOREVER</a>
+      <div class="level-badge" id="levelBadge">Nivel 1</div>
+    </header>
+
+    <section class="intro">
+      <h1>🔤 Sopa de letras</h1>
+      <p>Encuentra todas las palabras. Cada nivel aumenta el tamaño de la cuadrícula, la cantidad de palabras y las direcciones posibles.</p>
+    </section>
+
+    <div class="game-layout">
+      <section class="board-panel" aria-label="Tablero del juego">
+        <div class="board-heading">
+          <h2>Encuentra las palabras</h2>
+          <div class="progress" id="progress">0 encontradas</div>
+        </div>
+        <div class="grid-wrap" id="gridWrap">
+          <div class="letter-grid" id="letterGrid" aria-label="Cuadrícula de letras"></div>
+        </div>
+        <p class="status" id="status" aria-live="polite">Selecciona la primera letra y arrastra hasta la última. También puedes tocar inicio y fin.</p>
+      </section>
+
+      <aside class="words-panel">
+        <h2>Palabras</h2>
+        <p class="words-hint" id="wordsHint">Puedes encontrarlas en horizontal o vertical.</p>
+        <ul class="word-list" id="wordList"></ul>
+        <div class="actions">
+          <button class="action-btn" id="clearBtn" type="button">Limpiar selección</button>
+          <button class="action-btn" id="restartBtn" type="button">Reiniciar nivel</button>
+          <button class="action-btn primary" id="nextBtn" type="button" hidden>Siguiente nivel →</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const WORD_BANK = [
+      'SOL', 'MAR', 'RIO', 'PAZ', 'LUZ', 'PAN', 'ORO', 'GATO', 'LUNA', 'FLOR',
+      'NUBE', 'CIELO', 'MONTE', 'BOSQUE', 'CAMPO', 'AMIGO', 'AMOR', 'JUEGO',
+      'LIBRO', 'MUNDO', 'TIERRA', 'ESTRELLA', 'PLANETA', 'MUSICA', 'FAMILIA',
+      'VENTANA', 'CAMINO', 'SONRISA', 'AVENTURA', 'MARIPOSA', 'UNIVERSO',
+      'CORAZON', 'JARDINES', 'ALEGRIA', 'NATURALEZA', 'IMAGINACION',
+      'TRANQUILIDAD', 'CONSTELACION', 'COMPAÑIA'
+    ];
+    const MAX_LEVEL = 10;
+    const BASIC_DIRECTIONS = [[0, 1], [1, 0]];
+    const DIAGONAL_DIRECTIONS = [[0, 1], [1, 0], [1, 1], [1, -1]];
+    const ALL_DIRECTIONS = [
+      [0, 1], [0, -1], [1, 0], [-1, 0],
+      [1, 1], [1, -1], [-1, 1], [-1, -1]
+    ];
+    const letterGrid = document.getElementById('letterGrid');
+    const wordList = document.getElementById('wordList');
+    const statusEl = document.getElementById('status');
+    const progressEl = document.getElementById('progress');
+    const levelBadge = document.getElementById('levelBadge');
+    const wordsHint = document.getElementById('wordsHint');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let level = 1;
+    let size = 8;
+    let words = [];
+    let board = [];
+    let foundWords = new Set();
+    let foundCells = new Set();
+    let anchor = null;
+    let dragStart = null;
+    let dragEnd = null;
+    let isDragging = false;
+
+    function shuffle(items) {
+      const shuffled = [...items];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    function getDifficulty(currentLevel) {
+      return {
+        size: Math.min(7 + currentLevel, 18),
+        wordCount: Math.min(2 + currentLevel, 14),
+        maxWordLength: Math.min(3 + currentLevel, 12),
+        directions: currentLevel === 1
+          ? BASIC_DIRECTIONS
+          : currentLevel === 2 ? DIAGONAL_DIRECTIONS : ALL_DIRECTIONS
+      };
+    }
+
+    function chooseWords(difficulty) {
+      let candidates = WORD_BANK.filter((word) =>
+        word.length <= difficulty.maxWordLength && word.length <= difficulty.size
+      );
+      if (candidates.length < difficulty.wordCount) {
+        candidates = WORD_BANK.filter((word) => word.length <= difficulty.size);
+      }
+      return shuffle(candidates).slice(0, difficulty.wordCount);
+    }
+
+    function tryPlaceWord(grid, word, directions, gridSize) {
+      for (let attempt = 0; attempt < 1200; attempt++) {
+        const [rowStep, colStep] = directions[Math.floor(Math.random() * directions.length)];
+        const startRow = Math.floor(Math.random() * gridSize);
+        const startCol = Math.floor(Math.random() * gridSize);
+        const endRow = startRow + rowStep * (word.length - 1);
+        const endCol = startCol + colStep * (word.length - 1);
+
+        if (endRow < 0 || endRow >= gridSize || endCol < 0 || endCol >= gridSize) continue;
+
+        let canPlace = true;
+        for (let i = 0; i < word.length; i++) {
+          const row = startRow + rowStep * i;
+          const col = startCol + colStep * i;
+          if (grid[row][col] && grid[row][col] !== word[i]) {
+            canPlace = false;
+            break;
+          }
+        }
+        if (!canPlace) continue;
+
+        for (let i = 0; i < word.length; i++) {
+          const row = startRow + rowStep * i;
+          const col = startCol + colStep * i;
+          grid[row][col] = word[i];
+        }
+        return true;
+      }
+      return false;
+    }
+
+    function createPuzzle(currentLevel) {
+      const difficulty = getDifficulty(currentLevel);
+      const selectedWords = chooseWords(difficulty);
+
+      for (let attempt = 0; attempt < 30; attempt++) {
+        const newBoard = Array.from({ length: difficulty.size }, () => Array(difficulty.size).fill(''));
+        const orderedWords = [...selectedWords].sort((a, b) => b.length - a.length);
+        const placed = orderedWords.every((word) =>
+          tryPlaceWord(newBoard, word, difficulty.directions, difficulty.size)
+        );
+        if (!placed) continue;
+
+        for (let row = 0; row < difficulty.size; row++) {
+          for (let col = 0; col < difficulty.size; col++) {
+            if (!newBoard[row][col]) {
+              newBoard[row][col] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'[Math.floor(Math.random() * 27)];
+            }
+          }
+        }
+        return { size: difficulty.size, words: selectedWords, board: newBoard };
+      }
+
+      throw new Error(`No se pudo generar el tablero del nivel ${currentLevel}.`);
+    }
+
+    function setStatus(message) {
+      statusEl.textContent = message;
+    }
+
+    function cellIndex(position) {
+      return position.row * size + position.col;
+    }
+
+    function getPosition(cell) {
+      if (!cell || !cell.matches('.letter')) return null;
+      return {
+        row: Number(cell.dataset.row),
+        col: Number(cell.dataset.col)
+      };
+    }
+
+    function pathBetween(start, end) {
+      if (!start || !end) return null;
+      const rowDiff = end.row - start.row;
+      const colDiff = end.col - start.col;
+      if (rowDiff !== 0 && colDiff !== 0 && Math.abs(rowDiff) !== Math.abs(colDiff)) return null;
+
+      const steps = Math.max(Math.abs(rowDiff), Math.abs(colDiff));
+      const rowStep = Math.sign(rowDiff);
+      const colStep = Math.sign(colDiff);
+      return Array.from({ length: steps + 1 }, (_, index) => ({
+        row: start.row + rowStep * index,
+        col: start.col + colStep * index
+      }));
+    }
+
+    function paintPath(path) {
+      letterGrid.querySelectorAll('.letter.selected').forEach((cell) => cell.classList.remove('selected'));
+      path.forEach((position) => {
+        const cell = letterGrid.children[cellIndex(position)];
+        if (cell && !cell.classList.contains('found')) cell.classList.add('selected');
+      });
+    }
+
+    function renderBoard() {
+      letterGrid.replaceChildren();
+      letterGrid.style.setProperty('--size', size);
+      letterGrid.style.fontSize = size >= 15 ? '.62rem' : size >= 12 ? '.72rem' : size >= 10 ? '.82rem' : '1rem';
+      letterGrid.style.minWidth = size > 11 ? `${size * 28}px` : '100%';
+
+      const fragment = document.createDocumentFragment();
+      board.forEach((row, rowIndex) => row.forEach((letter, colIndex) => {
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'letter';
+        cell.textContent = letter;
+        cell.dataset.row = rowIndex;
+        cell.dataset.col = colIndex;
+        cell.setAttribute('aria-label', `Fila ${rowIndex + 1}, columna ${colIndex + 1}, ${letter}`);
+        if (foundCells.has(cellIndex({ row: rowIndex, col: colIndex }))) cell.classList.add('found');
+        fragment.appendChild(cell);
+      }));
+      letterGrid.appendChild(fragment);
+    }
+
+    function renderWords() {
+      wordList.replaceChildren();
+      words.forEach((word) => {
+        const item = document.createElement('li');
+        item.className = `word-item${foundWords.has(word) ? ' found' : ''}`;
+        item.append(document.createTextNode(word));
+        if (foundWords.has(word)) {
+          const check = document.createElement('span');
+          check.className = 'word-check';
+          check.setAttribute('aria-label', 'Encontrada');
+          check.textContent = '✓';
+          item.appendChild(check);
+        }
+        wordList.appendChild(item);
+      });
+      progressEl.textContent = `${foundWords.size} de ${words.length} encontradas`;
+    }
+
+    function renderLevel() {
+      const puzzle = createPuzzle(level);
+      size = puzzle.size;
+      words = puzzle.words;
+      board = puzzle.board;
+      foundWords = new Set();
+      foundCells = new Set();
+      anchor = null;
+      dragStart = null;
+      dragEnd = null;
+      isDragging = false;
+      levelBadge.textContent = `Nivel ${level}`;
+      wordsHint.textContent = level === 1
+        ? 'Busca en horizontal y vertical.'
+        : level === 2 ? 'Ahora también hay palabras en diagonal.' : 'Las palabras pueden ir en cualquier dirección.';
+      nextBtn.hidden = true;
+      nextBtn.textContent = 'Siguiente nivel →';
+      renderBoard();
+      renderWords();
+      setStatus('Arrastra sobre una palabra o toca su primera y última letra.');
+    }
+
+    function submitPath(path) {
+      const selection = path.map((position) => board[position.row][position.col]).join('');
+      const word = words.find((candidate) =>
+        !foundWords.has(candidate) && (candidate === selection || candidate === [...selection].reverse().join(''))
+      );
+
+      if (!word) {
+        anchor = null;
+        paintPath([]);
+        setStatus('Esa selección no forma una palabra de la lista. Inténtalo otra vez.');
+        return;
+      }
+
+      foundWords.add(word);
+      path.forEach((position) => foundCells.add(cellIndex(position)));
+      renderBoard();
+      renderWords();
+      anchor = null;
+
+      if (foundWords.size === words.length) {
+        nextBtn.hidden = false;
+        if (level === MAX_LEVEL) {
+          nextBtn.textContent = 'Volver al nivel 1 ↻';
+          setStatus('¡Completaste los 10 niveles! Puedes volver a empezar cuando quieras.');
+        } else {
+          setStatus(`¡Nivel ${level} completado! El siguiente será un poco más difícil.`);
+        }
+      } else {
+        setStatus(`¡Encontraste ${word}! Sigue buscando.`);
+      }
+    }
+
+    function selectByTap(position) {
+      if (!anchor) {
+        anchor = position;
+        paintPath([position]);
+        setStatus('Primera letra marcada; elige la última letra de la palabra.');
+        return;
+      }
+
+      const path = pathBetween(anchor, position);
+      if (!path || path.length === 1) {
+        anchor = position;
+        paintPath([position]);
+        setStatus('Inicio marcado. Elige la última letra en línea recta.');
+        return;
+      }
+
+      submitPath(path);
+    }
+
+    letterGrid.addEventListener('click', (event) => {
+      if (event.detail !== 0) return;
+      const position = getPosition(event.target.closest('.letter'));
+      if (position) selectByTap(position);
+    });
+
+    letterGrid.addEventListener('pointerdown', (event) => {
+      const cell = event.target.closest('.letter');
+      if (!cell) return;
+      event.preventDefault();
+      const position = getPosition(cell);
+      dragStart = anchor || position;
+      dragEnd = position;
+      isDragging = true;
+      paintPath(pathBetween(dragStart, dragEnd) || []);
+    });
+
+    letterGrid.addEventListener('pointerover', (event) => {
+      if (!isDragging) return;
+      const position = getPosition(event.target.closest('.letter'));
+      if (!position) return;
+      const path = pathBetween(dragStart, position);
+      if (path) {
+        dragEnd = position;
+        paintPath(path);
+      }
+    });
+
+    letterGrid.addEventListener('pointerup', (event) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const position = getPosition(event.target.closest('.letter')) || dragEnd;
+      const path = pathBetween(dragStart, position);
+      if (!path) {
+        anchor = null;
+        paintPath([]);
+        setStatus('Selecciona una línea recta de letras.');
+      } else if (path.length === 1) {
+        if (!anchor) {
+          anchor = dragStart;
+          paintPath(path);
+          setStatus('Primera letra marcada; elige la última letra de la palabra.');
+        } else {
+          anchor = null;
+          paintPath([]);
+          setStatus('Selección limpiada. Elige la primera letra para comenzar.');
+        }
+      } else {
+        submitPath(path);
+      }
+      dragStart = null;
+      dragEnd = null;
+    });
+
+    document.addEventListener('pointerup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      dragStart = null;
+      dragEnd = null;
+      anchor = null;
+      paintPath([]);
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      anchor = null;
+      paintPath([]);
+      setStatus('Selección limpiada. Elige la primera letra para comenzar.');
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', renderLevel);
+    nextBtn.addEventListener('click', () => {
+      level = level === MAX_LEVEL ? 1 : level + 1;
+      renderLevel();
+    });
+
+    renderLevel();
+  </script>
+</body>
+</html>

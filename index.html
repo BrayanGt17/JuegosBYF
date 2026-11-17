@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Analytics -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRZTTZBHJH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,515 +11,826 @@
       gtag('js', new Date());
       gtag('config', 'G-MRZTTZBHJH');
     </script>
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://byfforever.online/">
     <meta property="og:title" content="BYFFOREVER💗 - Juegos y más...">
     <meta property="og:description" content="Juegos, cuentos, música y momentos especiales para ti.">
-    <!-- Imagen temporal de Unsplash (cambiar por tu imagen personalizada) -->
     <meta property="og:image" content="https://i.ibb.co/HTcwDqCf/Gemini-Generated-Image-w37ipyw37ipyw37i.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://byfforever.online/">
-    <meta property="twitter:title" content="BYFFOREVER💗 - Juegos y más...">
-    <meta property="twitter:description" content="Juegos, cuentos, música y momentos especiales para ti.">
-    <meta property="twitter:image" content="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=630&fit=crop">
-    
-    <title>BYFFOREVER💗 - Juegos y más...</title>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://byfforever.online/">
+    <meta name="twitter:title" content="BYFFOREVER💗 - Juegos y más...">
+    <meta name="twitter:description" content="Juegos, cuentos, música y momentos especiales para ti.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=630&fit=crop">
+
+    <title>BYFFOREVER💗</title>
     <style>
+        :root {
+            --bg-1: #12071d;
+            --bg-2: #1f0d36;
+            --bg-3: #2a143f;
+            --panel: rgba(28, 20, 42, 0.82);
+            --panel-strong: rgba(20, 14, 31, 0.96);
+            --stroke: rgba(196, 152, 255, 0.28);
+            --pink-1: #ff7ac6;
+            --pink-2: #ff2f92;
+            --purple-1: #b98dff;
+            --purple-2: #6d53d3;
+            --text: #f4defd;
+            --muted: #d0b8ea;
+            --shadow: rgba(9, 3, 17, 0.52);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        /* ===== MANTENIMIENTO ===== */
-        .maintenance-overlay {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
+        html {
+            scroll-behavior: smooth;
         }
-
-        .maintenance-title {
-            font-size: 3em;
-            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-            margin-bottom: 20px;
-        }
-
-        .maintenance-message {
-            font-size: 1.5em;
-            color: #d1c4e9;
-            margin-bottom: 40px;
-            max-width: 500px;
-            line-height: 1.6;
-        }
-
-        .maintenance-hearts {
-            font-size: 3em;
-            margin-bottom: 30px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5)); }
-            to { filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8)); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .whatsapp-btn {
-            padding: 15px 40px;
-            background: #25D366;
-            color: white;
-            border-radius: 30px;
-            font-size: 1.2em;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-        }
-
-        /* ===== CONTENIDO PRINCIPAL (COMENTADO) ===== */
-        /* Descomenta el contenido para activar la pagina normal */
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #e1bee7;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(255, 121, 198, 0.2), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(116, 97, 255, 0.18), transparent 36%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
             overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         #particles-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            opacity: 0.9;
         }
 
-        .content {
+        .site-shell {
             position: relative;
             z-index: 1;
-            padding: 20px;
-            min-height: 100vh;
+            width: min(1200px, calc(100% - 24px));
+            margin: 0 auto;
+            padding: 22px 0 48px;
+        }
+
+        .topbar {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 18px 14px;
+            margin-top: 6px;
+            border: 1px solid var(--stroke);
+            border-radius: 22px;
+            background: rgba(20, 14, 31, 0.65);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(8px);
         }
 
-        .header {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
         }
 
-        .logo {
-            font-size: 3.5em;
-            font-weight: bold;
-            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
-            letter-spacing: 5px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5)); }
-            to { filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8)); }
-        }
-
-        .tagline-container {
-            height: 35px;
-            margin-top: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .tagline {
-            color: #d1c4e9;
-            font-size: 1.2em;
-            letter-spacing: 2px;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            opacity: 0;
-            animation: fadeTagline 10s infinite;
-        }
-
-        .tagline:nth-child(1) { animation-delay: 0s; }
-        .tagline:nth-child(2) { animation-delay: 2.5s; }
-        .tagline:nth-child(3) { animation-delay: 5s; }
-        .tagline:nth-child(4) { animation-delay: 7.5s; }
-
-        @keyframes fadeTagline {
-            0% { opacity: 0; transform: translateY(10px); }
-            5% { opacity: 1; transform: translateY(0); }
-            20% { opacity: 1; transform: translateY(0); }
-            25% { opacity: 0; transform: translateY(-10px); }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
-
-        .games-grid {
+        .brand-mark {
+            width: 42px;
+            height: 42px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px;
-            max-width: 1200px;
+            place-items: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--pink-1), var(--purple-2));
+            box-shadow: 0 10px 24px rgba(255, 47, 146, 0.35);
+            font-size: 1.4rem;
+        }
+
+        .brand-text {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: #fff;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: var(--muted);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .nav a:hover,
+        .nav a:focus-visible {
+            background: rgba(255,255,255,0.04);
+            color: white;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: center;
+            padding: 36px 12px 8px;
+        }
+
+        .hero-copy {
+            padding: 12px 8px 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #f6dffa;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            margin-top: 18px;
+            font-size: clamp(2.6rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+            font-weight: 900;
+            text-shadow: 0 0 28px rgba(255, 122, 198, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffd7f2 0%, #ff9ed0 25%, #bb9cff 62%, #f9d0ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            margin-top: 18px;
+            max-width: 620px;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1.08rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
+            padding: 0 22px;
+            border-radius: 999px;
+            font-weight: 800;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--pink-2), var(--purple-2));
+            color: white;
+            box-shadow: 0 14px 28px rgba(255, 47, 146, 0.32);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--stroke);
+            background: rgba(255,255,255,0.03);
+            color: var(--text);
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover,
+        .primary-btn:focus-visible,
+        .secondary-btn:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(30, 20, 45, 0.82), rgba(15, 10, 25, 0.9));
+            border: 1px solid var(--stroke);
+            border-radius: 28px;
+            padding: 22px;
+            box-shadow: 0 26px 48px var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
             width: 100%;
-            margin-bottom: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 122, 198, 0.95), rgba(185, 141, 255, 0.95), transparent);
+        }
+
+        .mini-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            color: #f2ddff;
+            font-weight: 700;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-1), var(--purple-1));
+            box-shadow: 0 0 12px rgba(255, 122, 198, 0.7);
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 12px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: var(--muted);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 122, 198, 0.18), rgba(185, 141, 255, 0.18));
+            font-size: 1.2rem;
+        }
+
+        .feature-item strong {
+            display: block;
+            color: white;
+            margin-bottom: 3px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 26px;
+        }
+
+        .stat {
+            padding: 18px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--stroke);
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: 6px;
+            color: white;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .section {
+            margin-top: 34px;
+            padding: 0 8px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            letter-spacing: -0.05em;
+        }
+
+        .section-head span {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
         }
 
         .game-card {
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.9), rgba(20, 20, 40, 0.95));
-            border: 1px solid rgba(126, 87, 194, 0.5);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
             position: relative;
-            overflow: hidden;
+            padding: 22px 18px 18px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(24, 17, 37, 0.9), rgba(14, 9, 24, 0.97));
+            border: 1px solid var(--stroke);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #7e57c2, transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
+        .game-card:hover,
+        .game-card:focus-within {
+            transform: translateY(-6px);
+            border-color: rgba(185, 141, 255, 0.6);
+            box-shadow: 0 22px 38px rgba(75, 52, 117, 0.35);
         }
 
-        .game-card:hover::before {
-            opacity: 1;
+        .game-icon {
+            width: 68px;
+            height: 68px;
+            display: grid;
+            place-items: center;
+            border-radius: 20px;
+            font-size: 2.1rem;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, rgba(255, 122, 198, 0.18), rgba(185, 141, 255, 0.18));
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
-        .game-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(126, 87, 194, 0.3),
-                        0 0 30px rgba(126, 87, 194, 0.2);
-            border-color: #7e57c2;
-        }
-
-        .game-card h2 {
-            margin: 15px 0;
-            color: #d1c4e9;
-            font-size: 1.5em;
-            font-weight: 600;
+        .game-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #faf2ff;
         }
 
         .game-card p {
-            color: #b39ddb;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            font-size: 0.95em;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 18px;
+            min-height: 72px;
         }
 
-        .play-btn {
-            background: linear-gradient(135deg, #4527a0 0%, #5e35b1 100%);
-            color: white;
-            padding: 12px 35px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            font-weight: 600;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
+        .game-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            font-weight: 700;
+            transition: all 0.2s ease;
         }
 
-        .play-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .play-btn:hover::before {
-            left: 100%;
-        }
-
-        .play-btn:hover {
-            background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(126, 87, 194, 0.5);
-        }
-
-        .icon {
-            font-size: 4em;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        .game-card a:hover,
+        .game-card a:focus-visible {
+            background: linear-gradient(135deg, rgba(255, 47, 146, 0.15), rgba(109, 83, 211, 0.18));
+            border-color: rgba(255, 122, 198, 0.4);
         }
 
         .footer {
+            margin-top: 36px;
+            padding: 28px 10px 6px;
             text-align: center;
-            padding: 20px;
-            color: #7e57c2;
-            font-size: 0.9em;
-            margin-top: auto;
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
-        /* Decoración de esquinas */
-        .corner-decoration {
-            position: fixed;
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(126, 87, 194, 0.3);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-        .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-        .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-        .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5em;
+        @media (max-width: 840px) {
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            
-            .games-grid {
+
+            .hero {
                 grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .site-shell {
+                width: min(100% - 16px, 1200px);
+                padding-top: 10px;
+            }
+
+            .topbar {
+                align-items: center;
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+            }
+
+            .nav a {
+                min-height: 42px;
+                display: grid;
+                place-items: center;
+                text-align: center;
+            }
+
+            .hero {
+                gap: 20px;
+                padding: 26px 4px 0;
+            }
+
+            .hero-copy {
+                padding: 4px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.4rem, 11vw, 3.4rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+                line-height: 1.65;
+            }
+
+            .hero-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+                min-height: 48px;
+            }
+
+            .hero-card {
+                padding: 16px;
+            }
+
+            .feature-item {
                 padding: 10px;
             }
-            
+
+            .stats-row {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 8px;
+                margin-top: 18px;
+            }
+
+            .stat {
+                padding: 14px 6px;
+            }
+
+            .stat span {
+                font-size: 0.72rem;
+                line-height: 1.35;
+            }
+
+            .section {
+                margin-top: 28px;
+                padding: 0 4px;
+            }
+
+            .section-head {
+                display: block;
+                margin-bottom: 14px;
+            }
+
+            .section-head h2 {
+                font-size: clamp(1.65rem, 8vw, 2rem);
+            }
+
+            .section-head span {
+                display: block;
+                margin-top: 6px;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .game-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 12px;
+            }
+
             .game-card {
-                padding: 20px;
+                padding: 17px 16px;
+                border-radius: 20px;
+            }
+
+            .game-icon {
+                width: 56px;
+                height: 56px;
+                margin-bottom: 12px;
+                font-size: 1.8rem;
+            }
+
+            .game-card p {
+                min-height: 0;
+                margin-bottom: 12px;
+                line-height: 1.55;
+            }
+
+            .game-card a {
+                min-height: 42px;
+                align-items: center;
+            }
+
+            .footer {
+                margin-top: 26px;
+                padding-top: 20px;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- ===== MANTENIMIENTO ===== 
-    <div class="maintenance-overlay">
-        <h1 class="maintenance-title">💔💔💔</h1>
-        <p class="maintenance-message">
-            Se acabó...<br>
-            Como lo que sentías por mí 💔
-        </p>
-        <div class="maintenance-hearts">💔🖤💔</div>
-    </div>-->
-
-     <!--===== CONTENIDO PRINCIPAL (COMENTADO) =====
-    Descomenta todo desde <canvas> hasta </body> para activar-->
-    
     <canvas id="particles-canvas"></canvas>
-    
-    <div class="corner-decoration corner-tl"></div>
-    <div class="corner-decoration corner-tr"></div>
-    <div class="corner-decoration corner-bl"></div>
-    <div class="corner-decoration corner-br"></div>
-    
-    <div class="content">
-        <header class="header">
-            <h1 class="logo">BYFFOREVER💗</h1>
-            <div class="tagline-container">
-                <p class="tagline">🎮 Juegos y más... 🎮</p>
-                <p class="tagline">😥 Regresa conmigo 😥</p>
-                <p class="tagline">☹ ala si di que si ☹</p>
-                <p class="tagline">💖 Te amo... 💖</p>
+
+    <div class="site-shell">
+        <header class="topbar" aria-label="Navegación principal">
+            <div class="brand" aria-label="BYFFOREVER logo">
+                <div class="brand-mark">❤</div>
+                <div class="brand-text">BYFFOREVER</div>
             </div>
+
+            <nav class="nav" aria-label="Menú superior">
+                <a href="#inicio">Inicio</a>
+                <a href="#explorar">Explorar</a>
+                <a href="#juegos">Juegos</a>
+                <a href="#cuentos">Cuentos</a>
+            </nav>
         </header>
-        
-        <div class="games-grid">
-            <div class="game-card">
-                <div class="icon">🐄</div>
-                <h2>Contar Vacas</h2>
-                <p>Toca las vacas para contarlas hasta 50 y dormir. ¡Una misión nocturna!</p>
-                <a href="contarvacas/" class="play-btn">Jugar</a>
+
+        <main id="inicio">
+            <section class="hero">
+                <div class="hero-copy">
+                    <div class="eyebrow">✨ Colección especial</div>
+                    <h1><span class="gradient-text">BYFFOREVER</span><br>💗</h1>
+                    <p>
+                        Un rincón lleno de juegos, cuentos, música y detalles para hacer el día más bonito.
+                        Aquí encuentras momentos de entretenimiento, calma y un toque de magia para compartir.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="primary-btn" href="#explorar">Explorar ahora</a>
+                        <a class="secondary-btn" href="cuentos/">Escuchar cuentos</a>
+                    </div>
+                </div>
+
+                <aside class="hero-card" aria-label="Resumen del sitio">
+                    <div class="mini-title">
+                        <span>Todo en un solo lugar</span>
+                        <span class="dot" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎮</div>
+                            <div>
+                                <strong>Juegos</strong>
+                                <span>Divertidos y rápidos de jugar.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📖</div>
+                            <div>
+                                <strong>Cuentos</strong>
+                                <span>Historias para escuchar y disfrutar.</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎵</div>
+                            <div>
+                                <strong>Música</strong>
+                                <span>Ambientes suaves y especiales.</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <div class="stats-row" aria-label="Estadísticas del proyecto">
+                <div class="stat">
+                    <strong>10</strong>
+                    <span>Experiencias</span>
+                </div>
+                <div class="stat">
+                    <strong>∞</strong>
+                    <span>Momentos</span>
+                </div>
+                <div class="stat">
+                    <strong>❤</strong>
+                    <span>Estilo especial</span>
+                </div>
             </div>
-            
-            <div class="game-card">
-                <div class="icon">🦕</div>
-                <h2>Dino Vaca</h2>
-                <p>Corre y salta obstáculos estilo Chrome Dino. ¡Desafía tu habilidad!</p>
-                <a href="dinovaca/" class="play-btn">Jugar</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">📖</div>
-                <h2>Cuentos</h2>
-                <p>Sube y escucha audios de cuentos. ¡Crea tu propia biblioteca de audio!</p>
-                <a href="cuentos/" class="play-btn">Explorar</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">🐍</div>
-                <h2>Culebrita</h2>
-                <p>Controla la serpiente y come las bolitas rojas. ¡No choques con tu cola!</p>
-                <a href="culebrita/" class="play-btn">Jugar</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">💗</div>
-                <h2>Corazón Animado</h2>
-                <p>Un hermoso corazón formado por partículas con música y efectos.</p>
-                <a href="corazones/" class="play-btn">Ver</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">🌌</div>
-                <h2>Galaxia</h2>
-                <p>Una galaxia interactiva con palabras de cariño y música.</p>
-                <a href="galaxia/" class="play-btn">Ver</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">🌷</div>
-                <h2>Tulipanes Amarillos</h2>
-                <p>Un ramo de tulipanes amarillos con estrellas fugaces y música especial.</p>
-                <a href="tulipanes/" class="play-btn">Ver</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">💌</div>
-                <h2>Notitas</h2>
-                <p>Deja notas 💕</p>
-                <a href="notas/" class="play-btn">Ver</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="icon">🎬</div>
-                <h2>Ver Anime/Pelis</h2>
-                <p>Ve anime y películas online 💕</p>
-                <a href="ver/" class="play-btn">Ver</a>
-            </div>
-        </div>
-        
+
+            <section class="section" id="explorar">
+                <div class="section-head">
+                    <h2>Explora la colección</h2>
+                    <span>Juegos, historias y detalles para cada momento</span>
+                </div>
+
+                <div class="game-grid" id="juegos">
+                    <article class="game-card">
+                        <div class="game-icon">🐄</div>
+                        <h3>Contar Vacas</h3>
+                        <p>Toca las vacas para contarlas hasta 50 y seguir con calma la noche.</p>
+                        <a href="contarvacas/">Jugar →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🦕</div>
+                        <h3>Dino Vaca</h3>
+                        <p>Corre, salta y supera obstáculos con estilo retro y energía.</p>
+                        <a href="dinovaca/">Jugar →</a>
+                    </article>
+
+                    <article class="game-card" id="cuentos">
+                        <div class="game-icon">📖</div>
+                        <h3>Cuentos</h3>
+                        <p>Escucha historias, disfruta los audios y vive cada relato con calma.</p>
+                        <a href="cuentos/">Explorar →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🐍</div>
+                        <h3>Culebrita</h3>
+                        <p>Controla la serpiente, come y evita chocar con tu propia cola.</p>
+                        <a href="culebrita/">Jugar →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">💗</div>
+                        <h3>Corazón</h3>
+                        <p>Un corazón animado con brillo, música y movimiento para sorprender.</p>
+                        <a href="corazones/">Ver →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🌌</div>
+                        <h3>Galaxia</h3>
+                        <p>Una experiencia espacial con mensajes de cariño y una atmósfera muy especial.</p>
+                        <a href="galaxia/">Ver →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🌷</div>
+                        <h3>Tulipanes</h3>
+                        <p>Un jardín de tulipanes amarillos con estrellas, brillo y música.</p>
+                        <a href="tulipanes/">Ver →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🔤</div>
+                        <h3>Sopa de letras</h3>
+                        <p>Encuentra todas las palabras y avanza por niveles cada vez más desafiantes.</p>
+                        <a href="sopaletras/">Jugar →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">💌</div>
+                        <h3>Notitas</h3>
+                        <p>Deja mensajes, frases y recuerdos con un estilo muy personal.</p>
+                        <a href="notas/">Ver →</a>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-icon">🎬</div>
+                        <h3>Ver Anime/Pelis</h3>
+                        <p>Una sección para ver contenido visual y relajarse con buena compañía.</p>
+                        <a href="ver/">Ver →</a>
+                    </article>
+                </div>
+            </section>
+        </main>
+
         <footer class="footer">
-            <p>© 2026 BYFFOREVER - Todos los derechos reservados</p>
+            © 2026 BYFFOREVER • Hecho con cariño y detalles especiales.
         </footer>
     </div>
 
     <script>
-        // Sistema de partículas con conexiones
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
-        
         let particles = [];
-        
+
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        
+
         function initParticles() {
             particles = [];
-            const particleCount = Math.min(80, Math.floor(window.innerWidth / 15));
-            
-            for (let i = 0; i < particleCount; i++) {
+            const count = Math.min(90, Math.max(35, Math.floor(window.innerWidth / 18)));
+
+            for (let i = 0; i < count; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    size: Math.random() * 2 + 0.5,
-                    opacity: 0.3 + Math.random() * 0.4
+                    vx: (Math.random() - 0.5) * 0.7,
+                    vy: (Math.random() - 0.5) * 0.7,
+                    r: Math.random() * 2.4 + 1.2,
+                    opacity: 0.35 + Math.random() * 0.55
                 });
             }
         }
-        
+
         function updateParticles() {
-            particles.forEach(p => {
+            particles.forEach((p) => {
                 p.x += p.vx;
                 p.y += p.vy;
-                
+
                 if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
             });
         }
-        
+
         function drawParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Dibujar partículas
-            particles.forEach(p => {
+
+            particles.forEach((p) => {
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(179, 157, 219, ${p.opacity})`;
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 180, 220, ${p.opacity})`;
                 ctx.fill();
             });
-            
-            // Dibujar conexiones
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    const maxDistance = 150;
-                    
-                    if (distance < maxDistance) {
-                        const opacity = (1 - distance / maxDistance) * 0.15;
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const a = particles[i];
+                    const b = particles[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = 120;
+
+                    if (dist < maxDist) {
+                        const alpha = (1 - dist / maxDist) * 0.16;
                         ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(126, 87, 194, ${opacity})`;
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.strokeStyle = `rgba(183, 142, 255, ${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
-                });
-            });
+                }
+            }
         }
-        
+
         function animate() {
             updateParticles();
             drawParticles();
             requestAnimationFrame(animate);
         }
-        
-        // Inicialización
+
         window.addEventListener('resize', () => {
             resizeCanvas();
             initParticles();
         });
-        
+
         resizeCanvas();
         initParticles();
         animate();
     </script>
-
-    <!--===== FIN CONTENIDO COMENTADO ===== -->
-
 </body>
 </html>
